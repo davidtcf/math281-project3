@@ -15,10 +15,8 @@ def f_third_derivative(x):
 Lx = 2 * np.pi
 Nxs = np.power(2, np.arange(2, 9))
 
-# Create arrays to store the error values
 err_5 = np.zeros(Nxs.shape)
 
-# Create the plot
 gridspec_props = dict(wspace=0.05, hspace=0.5, left=0.1, right=0.8, bottom=0.1, top=0.9)
 
 for Nx, ind in zip(Nxs, range(len(Nxs))):

@@ -10,7 +10,7 @@ U0 = 0.1
 Nx = 100      
 final_time = 50 
 output_interval = 0.5  
-delta_t = 0.01  
+delta_t = 0.005  
 dx = Lx / Nx    
 x = np.linspace(-Lx/2, Lx/2, Nx, endpoint=False) 
 
@@ -145,6 +145,9 @@ def exact_solution(x, t, U0, Lx, initial_condition_func):
 def initial_condition_func(x, Lx):
     return np.sin(4 * np.pi * x / Lx) + 0.25 * np.sin(8 * np.pi * x / Lx)
 
+print("The RMS error across the spatial domain at t=0 is:"+ 
+      f"{solution[0]-exact_solution(x, t[0], U0, Lx, initial_condition_func)}")
+
 def rms_error(numerical_solution, exact_solution, dx):
     return np.sqrt(np.mean((numerical_solution - exact_solution)**2))
 
@@ -153,6 +156,7 @@ for i in range(len(t)):
     u_exact_t = exact_solution(x, t[i], U0, Lx, initial_condition_func)  
     rms_err = rms_error(solution[i, :], u_exact_t, dx)  
     rms_errors.append(rms_err)
+
 
 plt.figure(figsize=(8, 6))
 plt.plot(t, rms_errors, label='RMS Error')
